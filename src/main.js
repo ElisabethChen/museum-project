@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import * as dat from "dat.gui";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Water } from "three/examples/jsm/objects/Water2";
-
+import * as assets from './ImportAssets'
 
 // GUI
 const gui = new dat.GUI();
@@ -39,24 +39,21 @@ scene.add(dLightHelper)
 // Background
 const cubemapLoader = new THREE.CubeTextureLoader();
 const cubeMap = cubemapLoader
-  .setPath('./src/assets/Images/skyboxBlue/')
   .load([
-    'right.png',
-    'left.png',
-    'top.png',
-    'bottom.png',
-    'front.png',
-    'back.png',
+    assets.right,
+    assets.left,
+    assets.top,
+    assets.bottom,
+    assets.front,
+    assets.back,
   ]);
 scene.background = cubeMap;
 
 // Reflection & Refraction cube
-const path = './src/assets/Images/SwedishRoyalCastle/';
-const format = '.jpg';
 const urls = [
-  path + 'px' + format, path + 'nx' + format,
-  path + 'py' + format, path + 'ny' + format,
-  path + 'pz' + format, path + 'nz' + format
+  assets.px, assets.nx,
+  assets.py, assets.ny,
+  assets.pz, assets.nz
 ];
 
 const cubeTextureLoader = new THREE.CubeTextureLoader();
@@ -84,7 +81,7 @@ scene.add(sphereMesh);
 
 // Texture shpere
 const textureLoader = new THREE.TextureLoader();
-const texture1 = textureLoader.load("./src/assets/Images/SwedishRoyalCastle/nz.jpg");
+const texture1 = textureLoader.load(assets.nz);
 texture1.wrapS = THREE.RepeatWrapping;
 texture1.wrapT = THREE.RepeatWrapping;
 texture1.repeat.set(2, 1);
@@ -124,8 +121,9 @@ let water = new Water(sphereGeom, {
   flowDirection: new THREE.Vector2(0.2, 0),
   textureWidth: 800,
   textureHeight: 600,
-  normalMap0: textureLoader.load('./src/assets/Water_1_M_Normal.jpg'),
-  normalMap1: textureLoader.load('./src/assets/water/Water_2_M_Normal.jpg')
+  // normalMap0: textureLoader.load('./src/assets/Water_1_M_Normal.jpg'),
+  normalMap0: textureLoader.load(assets.waterNormal1),
+  normalMap1: textureLoader.load(assets.waterNormal2)
 });
 
 water.position.y = 0.75;
