@@ -124,7 +124,7 @@ let water = new Water(sphereGeom, {
   flowDirection: new THREE.Vector2(0.2, 0),
   textureWidth: 800,
   textureHeight: 600,
-  normalMap0: textureLoader.load('./src/assets/water/Water_1_M_Normal.jpg'),
+  normalMap0: textureLoader.load('./src/assets/Water_1_M_Normal.jpg'),
   normalMap1: textureLoader.load('./src/assets/water/Water_2_M_Normal.jpg')
 });
 
